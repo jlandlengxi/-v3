@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="zh-CN">
+<head> 
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"> 
+  <title>月夕会总部官网</title> 
+  <meta name="description" content="官网描述"> 
+  <style>
+    :root{
+      --bg:#fbfbfb;
+      --ink:#0f1724;
+      --muted:#6b7280;
+      --gold:#caa76b;
+      --glass: rgba(255,255,255,0.6);
+      --card-border: rgba(15,23,36,0.06);
+      --accent-1: #6b5cf6;
+      --accent-2: #b78df8;
+      --shadow-1: 0 10px 30px rgba(15,23,36,0.06);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: linear-gradient(180deg,var(--bg),#f3f6fb);
+      color:var(--ink); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .wrap{max-width:920px;margin:28px auto;padding:24px}
+    header{display:flex;align-items:center;justify-content:space-between;padding:12px 0;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));box-shadow:0 6px 20px rgba(107,92,246,0.14);display:flex;align-items:center;justify-content:center;color:white;font-weight:800}
+    .brand h1{font-size:18px;margin:0;letter-spacing:0.6px}
+
+    .nav{display:flex;gap:18px;align-items:center}
+    .nav a{color:var(--muted);text-decoration:none;font-weight:700;font-size:14px}
+
+    .hamburger{display:none;background:transparent;border:0;padding:8px;border-radius:8px}
+    .mobile-menu{display:none;position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(15,23,36,0.35);backdrop-filter:blur(6px);z-index:60}
+    .mobile-panel{position:absolute;top:0;right:0;width:84%;max-width:360px;background:linear-gradient(180deg,white,#fbfcff);height:100%;padding:22px;box-shadow:0 10px 40px rgba(15,23,36,0.12)}
+    .mobile-panel a{display:block;padding:12px 0;color:var(--ink);font-weight:700;text-decoration:none;border-bottom:1px solid rgba(15,23,36,0.03)}
+
+    .hero{display:flex;gap:28px;align-items:stretch;padding:30px 0}
+    .hero-left{flex:1}
+    .kicker{display:inline-block;padding:6px 12px;border-radius:999px;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:white;font-weight:800;font-size:12px}
+    .headline{font-size:40px;line-height:1.06;margin:18px 0;font-weight:800;max-width:40ch}
+    .lead{color:var(--muted);max-width:48ch;margin-bottom:18px;line-height:1.7}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn-primary{padding:14px 20px;border-radius:12px;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:white;font-weight:800;box-shadow:0 16px 40px rgba(107,92,246,0.12);text-decoration:none}
+    .btn-ghost{padding:12px 18px;border-radius:12px;border:1px solid var(--card-border);background:transparent;color:var(--ink);font-weight:700;text-decoration:none}
+
+    .hero-right{width:380px;flex:0 0 380px}
+    .panel{background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0.98));border-radius:14px;padding:18px;border:1px solid var(--card-border);box-shadow:var(--shadow-1);backdrop-filter: blur(6px)}
+
+    .products{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+    .product{padding:12px;border-radius:10px;background:transparent;border:1px solid rgba(15,23,36,0.03);display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-height:72px}
+    .product .meta{width:100%;max-width:36ch}
+    .product h3{margin:0;font-size:15px}
+    .price{font-weight:800;color:var(--ink);margin-top:6px}
+
+    .section{margin-top:38px}
+    .section h2{font-size:18px;margin-bottom:12px}
+    .team{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+
+    .team-card{background:linear-gradient(180deg,rgba(255,255,255,0.92),rgba(255,255,255,0.98));border-radius:12px;padding:14px;border:1px solid var(--card-border);box-shadow:var(--shadow-1);text-align:center}
+    .team-card h4{margin:10px 0 6px;font-size:15px}
+    .team-card p{color:var(--muted);font-size:13px;margin:0;max-width:44ch;line-height:1.6}
+
+    .groups{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+    .group-card{padding:24px;border-radius:12px;background:linear-gradient(180deg,white, #fbfcff);border:1px solid var(--card-border);box-shadow:var(--shadow-1);min-height:160px;display:flex;flex-direction:column;justify-content:center;}
+
+    footer{margin-top:40px;padding:20px 0;text-align:center;color:var(--muted);font-size:13px}
+
+    .product:hover{transform:translateY(-6px);box-shadow:0 18px 46px rgba(15,23,36,0.06)}
+    .team-card:hover{transform:translateY(-6px)}
+
+    @media (max-width:900px){
+      .wrap{padding:18px;margin:18px auto}
+      .hero{flex-direction:column-reverse}
+      .hero-right{width:100%;flex-basis:auto}
+      .headline{font-size:28px}
+      .lead{font-size:15px}
+      .panel{padding:16px}
+      .products{grid-template-columns:1fr}
+      .team{grid-template-columns:1fr}
+      .groups{grid-template-columns:1fr}
+      .hero-right .pill{display:none}
+      .nav{display:none}
+      .hamburger{display:inline-flex}
+      .btn-primary{width:100%;text-align:center}
+      .btn-ghost{width:100%;text-align:center}
+      .hero-left{width:100%}
+    }
+
+    @media (max-width:420px){
+      .headline{font-size:22px}
+      .logo{width:42px;height:42px}
+      header{gap:8px}
+      .brand h1{font-size:16px}
+    }
+  </style> 
+</head> 
+<body> 
+  <div class="wrap"> 
+    <header> 
+      <div class="brand"> 
+        <div class="logo">月夕</div> 
+        <div> 
+          <h1>月夕会</h1> 
+          <div style="font-size:12px;color:var(--muted)">Wiki</div> 
+        </div> 
+      </div> 
+      <nav class="nav" aria-label="主导航"> 
+        <a href="#intro">月夕wiki原名月夕会</a> 
+        <a href="#team">团队</a> 
+        <a href="#groups">交流群</a> 
+      </nav> 
+      <button class="hamburger" id="menuBtn" aria-label="打开菜单"> 
+        <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> 
+          <path d="M4 7H20M4 12H20M4 17H20" stroke="#0f1724" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /> 
+        </svg>
+      </button> 
+    </header> 
+
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true"> 
+      <div class="mobile-panel"> 
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px"> 
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="logo" style="width:40px;height:40px">月夕</div>
+            <div style="font-weight:800">月夕维基官网</div>
+          </div> 
+          <button id="closeBtn" style="border:0;background:transparent;padding:8px;border-radius:8px">✕</button> 
+        </div> 
+        <a href="#intro">关于我们</a> 
+        <a href="#team">团队</a> 
+        <a href="#groups">加入月夕会</a> 
+        <div style="margin-top:18px"> 
+          <a class="btn-primary" href="#" style="display:block;text-align:center">按键文本</a> 
+        </div> 
+      </div> 
+    </div> 
+
+    <section class="hero" id="intro"> 
+      <div class="hero-left"> 
+        <div class="kicker">Wiki</div> 
+        <h2 class="headline">添加高层</h2> 
+        <p class="lead">点击下面的按钮加高层好友</p> 
+        <div class="actions"> 
+          <a class="btn-primary" href="https://qm.qq.com/q/qsAgB2pZq8">序言</a> 
+          <a class="btn-ghost" href="https://qm.qq.com/q/Xaegw2nPs4">刚睡</a> 
+        </div> 
+      </div> 
+      <aside class="hero-right"> 
+        <div class="panel"> 
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"> 
+            <div> 
+              <div style="font-size:12px;color:var(--muted)">月夕</div> 
+              <div style="font-weight:800">Wiki</div> 
+            </div> 
+          </div> 
+          <div class="products"> 
+            <div class="product"> 
+              <div class="meta"> 
+                <h3>网络搜索资料</h3> 
+                <div style="font-size:13px;color:var(--muted)">来自多方平台搜索</div> 
+                <ul style="margin:8px 0 0 16px;color:var(--muted);font-size:13px;line-height:1.7"> 
+                  <li>- 月夕会：网络喷系恶俗组织，以抱团攻击、辱骂嘲讽、恶意造谣、骚扰挑衅为主要行为，风格低俗激进，行事隐蔽。成员多为青少年，易被煽动，法律意识薄弱，常以网络暴力、羞辱他人获取圈子地位，无视公序良俗与平台规则。
+- 性质：属于人才济济的网络暴力团伙，行为涉嫌侮辱诽谤、侵犯隐私，对他人身心及网络环境危害极大，触碰法律与道德底线。</li>
+                </ul> 
+              </div> 
+              <div class="price"></div> 
+            </div> 
+            <div class="product"> 
+              <div class="meta"> 
+                <h3>组织现状</h3> 
+                <div style="font-size:13px;color:var(--muted)">现状</div> 
+                <ul style="margin:8px 0 0 16px;color:var(--muted);font-size:13px;line-height:1.7"> 
+                  <li>月夕wiki现已由剑斩一手打造月夕技术部门内部泛滥最新q反月夕wiki实力只增不减</li>
+                </ul> 
+              </div> 
+              <div class="price"></div> 
+            </div> 
+          </div> 
+        </div> 
+      </aside> 
+    </section> 
+
+    <section class="section" id="team"> 
+      <h2>团队成员</h2> 
+      <div class="team"> 
+        <div class="team-card"> 
+          <h4>序言</h4> 
+          <p>月夕创始人</p> 
+          <p style="margin-top:10px;font-size:14px">月夕第一大疯狗刚建立时带领自己的亲信招了许多恶俗狗打遍天下使月夕出现在大众视野月夕第一大疯狗 极罪版权人 诛仙老大 七星创始人 黑化老大 伊月老大 琥家老大 三星预备老大</p> 
+        </div> 
+        <div class="team-card"> 
+          <h4>刚睡</h4> 
+          <p>月夕女皇</p> 
+          <p style="margin-top:10px;font-size:14px">总沧海代理老大历代老大and
+女皇  神冰殿代理老大  恒启历代老大and高层  东方极乐高层  喷凌体系高层  天主高层  罪火高层  仙庭高层  冰岛女皇  圣世老大  新风高层and历代老大  无限历代  老大and高层  东凌现任and版权人  四季老大  罪火版权人月夕高层  元尊历代</p> 
+        </div> 
+        <div class="team-card"> 
+          <h4>剑圣</h4> 
+          <p>月夕历代</p> 
+          <p style="margin-top:10px;font-size:14px">月夕历代剑圣现高层月夕第一大将为月夕做出贡献无数黑羽九霄黑化听雪原罪雅利罪恶体系安天恶维基月夕历代灭古高层</p> 
+        </div> 
+      </div> 
+      <div class="team-card" style="margin-top:12px;"> 
+        <h4>咐泪</h4> 
+        <p>现任女皇</p> 
+        <p style="margin-top:10px;font-size:14px">咐泪月刚来就要求空降女皇在一段时间观察后发现咐泪确实配做女皇虽然待在月夕时间不长但也做出不少贡献仙家军驻女喷部长
+政联体系 极乐净天 黑神派系 历代
+龅龅牙频道幕后老大
+三合会老大
+挂圈沧海太上皇</p> 
+      </div> 
+    </section>
+  </div>  
+
+  <section class="section" id="groups"> 
+    <h2>加入我们</h2> 
+    <div class="groups"> 
+      <div class="group-card"> 
+        <h3>点击下方按键加入月夕会审核</h3> 
+        <p style="color:var(--muted);margin-bottom:12px">加入月夕  它会成为你在网络上面的保护伞</p> 
+        <a class="btn-primary" href="https://qun.qq.com/universal-share/share?ac=1&authKey=ZebgiW74pvhL5eN0HiR55aCFtjPxLdIoG1%2BGlXcVs3JEzPJRs8P%2FX6NuyahedPVM&busi_data=eyJncm91cENvZGUiOiI1Mjg1NzI5OTQiLCJ0b2tlbiI6Ik5wWnJCSHdDZFI5eTlWKzA1QnA4eERCS3VtYmIrT3Erd3VuN1Y1L0JHUStlREsrTXNVL3NaQUxzSmRNVTdPb2EiLCJ1aW4iOiIyNTE3NTk0NTI3In0%3D&data=w0Bld-3lkjkFy5MVkRKjB4ffX0S9-25mw8oEypzLHC3Wjs1NQMyYgBPUhlgADR71QMpyDWdPpeQbW6ede8rNDA&svctype=4&tempid=h5_group_info">加入我们</a> 
+      </div> 
+    </div> 
+  </section> 
+
+  <footer>© 2026 月夕Wiki版权所有</footer>  
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeBtn = document.getElementById('closeBtn');
+    menuBtn && menuBtn.addEventListener('click', () => {
+      mobileMenu.style.display = 'block';
+      mobileMenu.setAttribute('aria-hidden', 'false');
+    });
+    closeBtn && closeBtn.addEventListener('click', () => {
+      mobileMenu.style.display = 'none';
+      mobileMenu.setAttribute('aria-hidden', 'true');
+    });
+    mobileMenu && mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) { mobileMenu.style.display = 'none'; mobileMenu.setAttribute('aria-hidden', 'true'); }
+    });
+  </script>  
+</body>
+</html>
